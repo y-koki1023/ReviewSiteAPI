@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       end
       scope 'reviews' do
         post 'register', to: 'reviews#create'
-        get  'get', to: 'reviews#show'
+        get  'get/:id', to: 'reviews#show'
         get  'getList', to: 'reviews#showList'
       end
     end
