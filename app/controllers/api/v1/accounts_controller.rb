@@ -12,12 +12,13 @@ module Api
             end
 
             def login
-                account = Account.find_by(login_params)
-                if account
-                    render json: { status: 'SUCCESS', account_id: account[:account_id] } 
+                account = Account.find_by(username: login_params[:username])
+                if account.authenticate(login_params[:password])
+                    render json: { status: 'SUCCESS', account_id: account[:account_id], username: account[:username] } 
                 else
                     render json: { status: 'ERROR'}
                 end
+                
             end
 
 
