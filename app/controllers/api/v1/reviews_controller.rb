@@ -29,7 +29,7 @@ module Api
                 limit = showList_params[:limit].to_i() 
                 offset = (showList_params[:page].to_i() - 1) * limit
                 if showList_params[:categories] != " "
-                    categories = showList_params[:categories].split(",")
+                    categories = showList_params[:categories].split(" ")
                     review_ids = Tag.where(title: categories).pluck(:review_id)
                     reviews = Review.where(id: review_ids).limit(limit).offset(offset)
                     record_count = review_ids.count
