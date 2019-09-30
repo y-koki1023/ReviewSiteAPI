@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_09_25_154753) do
 
-  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "username"
     t.string "password_digest"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_154753) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "account_id"
     t.string "title"
     t.string "content"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_09_25_154753) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "review_id"
     t.string "title"
     t.datetime "created_at", precision: 6, null: false

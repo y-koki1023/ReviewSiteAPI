@@ -28,11 +28,16 @@ module Api
             def showList
                 limit = showList_params[:limit].to_i() 
                 offset = (showList_params[:page].to_i() - 1) * limit
-                categories = showList_params[:categories].split(",")
-                review_ids = Tag.where(title: categories).limit(limit).offset(offset).pluck(:review_id)
-
-                reviews = Review.find(review_ids)
-                render json: { status: 'SUCCESS', message: 'Loaded the post', reviews: reviews } 
+                if showList_params[:categories] != " "
+                    categories = showList_params[:categories].split(" ")
+                    review_ids = Tag.where(title: categories).pluck(:review_id)
+                    reviews = Review.where(id: review_ids).limit(limit).offset(offset)
+                    record_count = review_ids.count
+                else
+                    reviews = Review.all.limit(limit).offset(offset)
+                    record_count = Review.count
+                end
+                render json: { status: 'SUCCESS', message: 'Loaded the post', reviews: reviews, record_count: record_count } 
             end
 
             def create_params
